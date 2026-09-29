@@ -69,30 +69,33 @@ export function renderConstellationHtml(config) {
       height: 100vh;
     }
     .chrome {
+      --chrome-control-height: 30px;
       grid-row: 1;
       display: flex;
+      flex-wrap: nowrap;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
       min-height: 42px;
       padding: 5px 8px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      overscroll-behavior-x: contain;
+      scrollbar-width: thin;
       border-bottom: 1px solid var(--border);
       background: var(--panel-bg);
     }
+    .chrome > * { flex: 0 0 auto; }
+    .chrome button, .chrome select {
+      height: var(--chrome-control-height);
+      min-height: var(--chrome-control-height);
+    }
     .brand {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       min-width: 0;
-      gap: 7px;
-    }
-    .brand h1 {
-      margin: 0;
-      font-size: var(--text-title-small, 16px);
-      line-height: 22px;
-      font-weight: var(--font-weight-semibold, 600);
-      white-space: nowrap;
     }
     .summary {
-      max-width: 240px;
+      max-width: 180px;
       color: var(--muted);
       font-size: 12px;
       overflow: hidden;
@@ -112,15 +115,12 @@ export function renderConstellationHtml(config) {
       display: flex;
       align-items: center;
       gap: 4px;
-      min-width: 0;
-      overflow-x: auto;
-      scrollbar-width: thin;
+      overflow: visible;
     }
     .status-strip button {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      min-height: 26px;
       padding: 2px 6px;
       border-color: transparent;
       color: var(--muted);
@@ -166,7 +166,13 @@ export function renderConstellationHtml(config) {
       background: repeating-linear-gradient(135deg, var(--status-color) 0 2px, transparent 2px 4px);
       border-radius: 1px;
     }
-    .toolbar { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 0;
+      overflow: visible;
+    }
     .toolbar button { min-width: 30px; }
     .toolbar .text-control { min-width: auto; }
     .trust-control {
@@ -621,29 +627,9 @@ export function renderConstellationHtml(config) {
     .status-failed { --status-color: var(--failed); }
     .status-archived { --status-color: var(--archived); }
     @media (max-width: 720px) {
-      .chrome {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 4px 6px;
-        padding: 6px;
-      }
-      .brand { grid-column: 1; }
-      .scope-control { grid-column: 2; }
       .scope-control span { display: none; }
-      .toolbar {
-        grid-column: 1 / -1;
-        grid-row: 2;
-        justify-content: flex-start;
-        margin-left: 0;
-      }
       .toolbar button { min-width: 28px; padding-inline: 6px; }
-      .status-strip {
-        grid-column: 1 / -1;
-        grid-row: 3;
-        width: 100%;
-        padding-bottom: 2px;
-      }
-      .status-strip button { flex: none; min-height: 24px; font-size: 11px; }
+      .status-strip button { font-size: 11px; }
       .toolbar .optional-label { display: none; }
       .filters.open { align-items: stretch; flex-direction: column; }
       .filters label { display: grid; grid-template-columns: 70px minmax(0, 1fr); }
@@ -673,8 +659,7 @@ export function renderConstellationHtml(config) {
       .source-description { grid-column: 1 / -1; }
     }
     @media (max-width: 520px) {
-      .brand h1 { font-size: 14px; }
-      .summary { display: none; }
+      .summary { max-width: 132px; }
       .filters { padding: 6px; }
       .attention-summary { font-size: 10px; }
       .inspector, .diagnostics { padding-inline: 8px; }
@@ -683,10 +668,6 @@ export function renderConstellationHtml(config) {
       }
     }
     @media (max-width: 360px) {
-      .toolbar {
-        overflow-x: auto;
-        scrollbar-width: thin;
-      }
       .inspector-head, .diagnostics-head {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
@@ -752,7 +733,7 @@ export function renderConstellationHtml(config) {
   <div class="app">
     <header class="chrome">
       <div class="brand">
-        <h1>Constellation</h1>
+        <h1 class="sr-only">Agent Constellation</h1>
         <span class="summary" id="summary">Loading…</span>
       </div>
       <label class="scope-control" for="scopeSelect">

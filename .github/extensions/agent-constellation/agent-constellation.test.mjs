@@ -3756,8 +3756,22 @@ test("renderer keeps chrome, filters, status context, and inspector usable when 
     assert.match(html, /@media \(max-width: 720px\)/);
     assert.match(html, /@media \(max-width: 520px\)/);
     assert.match(html, /@media \(max-width: 360px\)/);
-    assert.match(html, /grid-template-columns: minmax\(0, 1fr\) auto/);
-    assert.match(html, /\.status-strip[\s\S]*overflow-x: auto/);
+    assert.match(html, /<h1 class="sr-only">Agent Constellation<\/h1>/);
+    assert.doesNotMatch(html, /<h1>Constellation<\/h1>/);
+    assert.match(
+        html,
+        /\.chrome \{[\s\S]*display: flex;[\s\S]*flex-wrap: nowrap;[\s\S]*overflow-x: auto;/
+    );
+    assert.match(
+        html,
+        /\.chrome button, \.chrome select \{[\s\S]*height: var\(--chrome-control-height\);[\s\S]*min-height: var\(--chrome-control-height\);/
+    );
+    assert.match(html, /\.status-strip \{[\s\S]*overflow: visible;/);
+    assert.match(html, /\.toolbar \{[\s\S]*overflow: visible;/);
+    assert.doesNotMatch(
+        html,
+        /@media \(max-width: 720px\) \{[\s\S]{0,200}\.chrome \{[\s\S]*display: grid;/
+    );
     assert.match(html, /\.attention-panel[\s\S]*max-height: 176px/);
     assert.match(html, /\.attention-list[\s\S]*grid-template-columns: minmax\(0, 1fr\)/);
     assert.match(html, /window\.matchMedia\("\(max-width: 480px\)"\)\.matches/);

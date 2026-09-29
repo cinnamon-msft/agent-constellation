@@ -74,7 +74,7 @@ A second deterministic overflow stage enforces a default budget of 32 visible ca
 
 The layout is designed for the normal right-hand pane first, not for a full-screen diagram. At 280, 320, 480, and 700 pixels, cards use a bounded stacked layout: depth is shown with a small capped indent, connections stay in the left gutter, and the content width never grows beyond the pane. Tall panes use the same bounded layout.
 
-At 960 pixels or wider, a small landscape tree may use the horizontal family-tree view when it has at most 10 visible nodes and four leaves. Dense all-session overviews remain stacked even at that width, preventing ultra-wide canvases and long sideways navigation. The status strip scrolls independently when needed, while toolbar labels, filters, and the inspector compact progressively at 720, 520, and 360 pixels.
+At 960 pixels or wider, a small landscape tree may use the horizontal family-tree view when it has at most 10 visible nodes and four leaves. Dense all-session overviews remain stacked even at that width, preventing ultra-wide canvases and long sideways navigation. The top controls stay in one consistent-height, non-wrapping row; when the pane is too narrow, the whole row scrolls horizontally rather than splitting controls into separate rows or nested scrolling regions. The visible title is omitted to preserve space while an accessible heading remains available to screen readers. Toolbar labels, filters, and the inspector compact progressively at 720, 520, and 360 pixels.
 
 ### Theme and accessibility behavior
 

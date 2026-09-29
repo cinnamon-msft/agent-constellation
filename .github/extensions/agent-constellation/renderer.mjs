@@ -89,19 +89,6 @@ export function renderConstellationHtml(config) {
       height: var(--chrome-control-height);
       min-height: var(--chrome-control-height);
     }
-    .brand {
-      display: flex;
-      align-items: center;
-      min-width: 0;
-    }
-    .summary {
-      max-width: 180px;
-      color: var(--muted);
-      font-size: 12px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
     .scope-control {
       display: inline-flex;
       align-items: center;
@@ -659,7 +646,6 @@ export function renderConstellationHtml(config) {
       .source-description { grid-column: 1 / -1; }
     }
     @media (max-width: 520px) {
-      .summary { max-width: 132px; }
       .filters { padding: 6px; }
       .attention-summary { font-size: 10px; }
       .inspector, .diagnostics { padding-inline: 8px; }
@@ -732,10 +718,8 @@ export function renderConstellationHtml(config) {
 <body>
   <div class="app">
     <header class="chrome">
-      <div class="brand">
-        <h1 class="sr-only">Agent Constellation</h1>
-        <span class="summary" id="summary">Loading…</span>
-      </div>
+      <h1 class="sr-only">Agent Constellation</h1>
+      <span class="summary sr-only" id="summary">Loading…</span>
       <label class="scope-control" for="scopeSelect">
         <span>View</span>
         <select id="scopeSelect" aria-describedby="scopeDescription">

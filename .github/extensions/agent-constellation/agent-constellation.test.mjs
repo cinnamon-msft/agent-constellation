@@ -3757,7 +3757,9 @@ test("renderer keeps chrome, filters, status context, and inspector usable when 
     assert.match(html, /@media \(max-width: 520px\)/);
     assert.match(html, /@media \(max-width: 360px\)/);
     assert.match(html, /<h1 class="sr-only">Agent Constellation<\/h1>/);
+    assert.match(html, /<span class="summary sr-only" id="summary">Loading…<\/span>/);
     assert.doesNotMatch(html, /<h1>Constellation<\/h1>/);
+    assert.doesNotMatch(html, /class="brand"/);
     assert.match(
         html,
         /\.chrome \{[\s\S]*display: flex;[\s\S]*flex-wrap: nowrap;[\s\S]*overflow-x: auto;/

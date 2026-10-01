@@ -3554,10 +3554,10 @@ test("renderer exposes accessibility and reduced-motion affordances", () => {
     assert.match(html, /parts\.push\(node\.demoLocalModel \? "Demo local model" : "Local model"\)/);
     assert.match(
         html,
-        /--local-model: #c084fc;\s*--local-model-surface: #581c87;\s*--local-model-text: #faf5ff;\s*--local-model-muted: #e9d5ff;/
+        /--local-model: #c084fc;\s*--local-leaf: var\(--true-color-green, #3fb950\);\s*--local-model-surface: #581c87;\s*--local-model-text: #faf5ff;\s*--local-model-muted: #e9d5ff;/
     );
     assert.match(html, /--local-leaf: var\(--true-color-green, #3fb950\);/);
-    assert.match(html, /--local-model: #7e22ce;\s*--local-model-surface: #e9d5ff;\s*--local-model-text: #2e1065;\s*--local-model-muted: #3b1b65;/);
+    assert.match(html, /--local-model: #7e22ce;\s*--local-leaf: var\(--true-color-green, #3fb950\);\s*--local-model-surface: #e9d5ff;\s*--local-model-text: #2e1065;\s*--local-model-muted: #3b1b65;/);
     assert.match(html, /\.local-model-leaf \{ color: var\(--local-leaf\); overflow: visible; \}/);
     assert.match(html, /--cloud-model: #60a5fa;\s*--cloud-model-surface: #1e3a8a;\s*--cloud-model-text: #eff6ff;\s*--cloud-model-muted: #dbeafe;/);
     assert.match(html, /--cloud-model: #1d4ed8;\s*--cloud-model-surface: #bfdbfe;\s*--cloud-model-text: #172554;\s*--cloud-model-muted: #1e3a8a;/);
@@ -3578,7 +3578,7 @@ test("renderer exposes accessibility and reduced-motion affordances", () => {
     assert.doesNotMatch(html, /6 - estimatedWidth \/ 2 - 13/);
     assert.match(html, /node\.isCloudModel && !node\.isShelf && !node\.isRepositoryGroup &&\s*!node\.isOverflowSummary && !node\.synthetic \? " cloud-model" : ""/);
     assert.match(html, /else if \(node\.isCloudModel\) \{\s*parts\.push\("Cloud model"\)/);
-    assert.match(html, /else if \(node\.isCloudModel && !node\.isShelf\)/);
+    assert.match(html, /if \(node\.isCloudModel && !node\.isShelf\)/);
     assert.match(html, /\.node\.local-model \.node-card \{ fill: Canvas; \}/);
     assert.match(html, /\.node\.cloud-model \.node-card \{ fill: Canvas; \}/);
     assert.match(html, /class: "node-model"/);
